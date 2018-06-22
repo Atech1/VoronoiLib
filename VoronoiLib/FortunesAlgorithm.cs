@@ -108,12 +108,12 @@ namespace VoronoiLib
 
                     if (outcode == start)
                     {
-                        edge.Start = new VPoint(x, y);
+                        edge.Start = new Point(x, y);
                         start = ComputeOutCode(x, y, minX, minY, maxX, maxY);
                     }
                     else
                     {
-                        edge.End = new VPoint(x, y);
+                        edge.End = new Point(x, y);
                         end = ComputeOutCode(x, y, minX, minY, maxX, maxY);
                     }
                 }
@@ -174,21 +174,21 @@ namespace VoronoiLib
                 if (Within(start.X, minX, maxX))
                 {
                     if (edge.SlopeRun > 0)
-                        edge.End = new VPoint(maxX, start.Y);
+                        edge.End = new Point(maxX, start.Y);
                     else
-                        edge.End = new VPoint(minX, start.Y);
+                        edge.End = new Point(minX, start.Y);
                 }
                 else
                 {
                     if (edge.SlopeRun > 0)
                     {
-                        edge.Start = new VPoint(minX, start.Y);
-                        edge.End = new VPoint(maxX, start.Y);
+                        edge.Start = new Point(minX, start.Y);
+                        edge.End = new Point(maxX, start.Y);
                     }
                     else
                     {
-                        edge.Start = new VPoint(maxX, start.Y);
-                        edge.End = new VPoint(minX, start.Y);
+                        edge.Start = new Point(maxX, start.Y);
+                        edge.End = new Point(minX, start.Y);
                     }
                 }
                 return true;
@@ -205,21 +205,21 @@ namespace VoronoiLib
                 if (Within(start.Y, minY, maxY))
                 {
                     if (edge.SlopeRise > 0)
-                        edge.End = new VPoint(start.X, maxY);
+                        edge.End = new Point(start.X, maxY);
                     else
-                        edge.End = new VPoint(start.X, minY);
+                        edge.End = new Point(start.X, minY);
                 }
                 else
                 {
                     if (edge.SlopeRise > 0)
                     {
-                        edge.Start = new VPoint(start.X, minY);
-                        edge.End = new VPoint(start.X, maxY);
+                        edge.Start = new Point(start.X, minY);
+                        edge.End = new Point(start.X, maxY);
                     }
                     else
                     {
-                        edge.Start = new VPoint(start.X, maxY);
-                        edge.End = new VPoint(start.X, minY);
+                        edge.Start = new Point(start.X, maxY);
+                        edge.End = new Point(start.X, minY);
                     }
                 }
                 return true;
@@ -228,13 +228,13 @@ namespace VoronoiLib
             //works for outside
             Debug.Assert(edge.Slope != null, "edge.Slope != null");
             Debug.Assert(edge.Intercept != null, "edge.Intercept != null");
-            var topX = new VPoint(CalcX(edge.Slope.Value, maxY, edge.Intercept.Value), maxY);
-            var bottomX = new VPoint(CalcX(edge.Slope.Value, minY, edge.Intercept.Value), minY);
-            var leftY = new VPoint(minX, CalcY(edge.Slope.Value, minX, edge.Intercept.Value));
-            var rightY = new VPoint(maxX, CalcY(edge.Slope.Value, maxX, edge.Intercept.Value));
+            var topX = new Point(CalcX(edge.Slope.Value, maxY, edge.Intercept.Value), maxY);
+            var bottomX = new Point(CalcX(edge.Slope.Value, minY, edge.Intercept.Value), minY);
+            var leftY = new Point(minX, CalcY(edge.Slope.Value, minX, edge.Intercept.Value));
+            var rightY = new Point(maxX, CalcY(edge.Slope.Value, maxX, edge.Intercept.Value));
 
             //reject intersections not within bounds
-            var candidates = new List<VPoint>();
+            var candidates = new List<Point>();
             if (Within(topX.X, minX, maxX))
                 candidates.Add(topX);
             if (Within(bottomX.X, minX, maxX))

@@ -1,11 +1,13 @@
-﻿namespace VoronoiLib.Structures
+﻿using System;
+
+namespace VoronoiLib.Structures
 {
-    public class VPoint
+    public class Point
     {
         public double X { get; }
         public double Y { get; }
 
-        internal VPoint(double x, double y)
+        internal Point(double x, double y)
         {
             X = x;
             Y = y;

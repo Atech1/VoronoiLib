@@ -125,7 +125,7 @@ namespace VoronoiLib.Structures
 
                 //grab the projection of this site onto the parabola
                 var y = ParabolaMath.EvalParabola(leftSection.Data.Site.X, leftSection.Data.Site.Y, directrix, x);
-                var intersection = new VPoint(x, y);
+                var intersection = new Point(x, y);
 
                 //create the two half edges corresponding to this intersection
                 var leftEdge = new VEdge(intersection, site, leftSection.Data.Site);
@@ -153,7 +153,7 @@ namespace VoronoiLib.Structures
             //had the same y value
             else if (leftSection != null && rightSection == null)
             {
-                var start = new VPoint((leftSection.Data.Site.X + site.X)/ 2, double.MinValue);
+                var start = new Point((leftSection.Data.Site.X + site.X)/ 2, double.MinValue);
                 var infEdge = new VEdge(start, leftSection.Data.Site, site);
                 var newEdge = new VEdge(start, site, leftSection.Data.Site);
 
@@ -204,7 +204,7 @@ namespace VoronoiLib.Structures
                 var d = bx*cy - by*cx;
                 var magnitudeB = bx*bx + by*by;
                 var magnitudeC = cx*cx + cy*cy;
-                var vertex = new VPoint(
+                var vertex = new Point(
                     (cy*magnitudeB - by * magnitudeC)/(2*d) + ax,
                     (bx*magnitudeC - cx * magnitudeB)/(2*d) + ay);
 
@@ -234,7 +234,7 @@ namespace VoronoiLib.Structures
             var section = circle.ToDelete;
             var x = circle.X;
             var y = circle.YCenter;
-            var vertex = new VPoint(x, y);
+            var vertex = new Point(x, y);
 
             //multiple edges could end here
             var toBeRemoved = new List<RBTreeNode<BeachSection>>();
@@ -385,7 +385,7 @@ namespace VoronoiLib.Structures
             var ycenter = y + by;
             //y center is off
             var circleEvent = new FortuneCircleEvent(
-                new VPoint(x + bx, ycenter + Math.Sqrt(x * x + y * y)),
+                new Point(x + bx, ycenter + Math.Sqrt(x * x + y * y)),
                 ycenter, section
             );
             section.Data.CircleEvent = circleEvent;
