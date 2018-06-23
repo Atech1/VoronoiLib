@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace VoronoiLib.Structures
 {
     public class Point
