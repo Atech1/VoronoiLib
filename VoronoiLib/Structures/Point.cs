@@ -1,7 +1,8 @@
 ﻿using System;
+
 namespace VoronoiLib.Structures
 {
-    public class Point : IEquatable<Point>
+    public class Point : IEquatable<Point>, IComparable<Point>
     {
         public double X { get; set; }
         public double Y { get; set; }
@@ -38,6 +39,25 @@ namespace VoronoiLib.Structures
             hash = (hash * 7) + this.X.GetHashCode();
             hash = (hash * 7) + this.Y.GetHashCode();
             return hash;
+        }
+
+        public double Magnitude()
+        {
+            return Math.Abs(this.X) + Math.Abs(this.Y);
+        }
+        public int CompareTo(Point obj)
+        {
+            if(obj == null)
+            {
+                return -1;
+            }
+            
+            if(this.Magnitude() > obj.Magnitude())
+            {
+                return -1;
+            }
+
+            return this.Magnitude() == obj.Magnitude() ? 0 : 1;
         }
     }
 }

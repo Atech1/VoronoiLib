@@ -6,9 +6,11 @@ namespace VoronoiLib
 {
     public static class FortunesAlgorithm
     {
+        public static double max {get; set;}
+        public static double min {get; set;}
         public static LinkedList<VEdge> Run(ICollection<FortuneSite> Sites)
         {
-            return Run(Sites, 0, 0, 500, 500);
+            return Run(Sites, min, min, max, max);
         }
         public static LinkedList<VEdge> Run(ICollection<FortuneSite> sites, double minX, double minY, double maxX, double maxY)
         {

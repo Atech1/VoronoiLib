@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace VoronoiLib.Structures
 {
-    public class FortuneSite
+    public class FortuneSite : IComparable<FortuneSite>
     {
         public Point point {get; private set;}
         public double X {
@@ -37,6 +39,13 @@ namespace VoronoiLib.Structures
         public void ReplaceCentroid(Point point)
         {
             this.point = point;
+        }
+
+        public int CompareTo(FortuneSite site)
+        {
+            if(site == null) return -1;
+            if(this.point.Magnitude() == site.point.Magnitude()) return 0;
+            return this.point.Magnitude() > site.point.Magnitude() ? -1 : 1;
         }
     }
 }
