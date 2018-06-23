@@ -3,8 +3,8 @@ namespace VoronoiLib.Structures
 {
     public class Point : IEquatable<Point>
     {
-        public double X { get; }
-        public double Y { get; }
+        public double X { get; set; }
+        public double Y { get; set; }
 
         internal Point(double x, double y)
         {

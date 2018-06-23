@@ -1,4 +1,6 @@
-﻿namespace VoronoiLib.Structures
+﻿using System;
+
+namespace VoronoiLib.Structures
 {
     public class VEdge
     {
@@ -32,6 +34,11 @@
             if (SlopeRise.ApproxEqual(0) || SlopeRun.ApproxEqual(0)) return;
             Slope = SlopeRise/SlopeRun;
             Intercept = start.Y - Slope*start.X;
+        }
+
+        public double Length()
+        {
+            return Math.Sqrt((Math.Pow(this.SlopeRise, 2) + Math.Pow(this.SlopeRun, 2)));
         }
     }
 }

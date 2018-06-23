@@ -33,5 +33,10 @@ namespace VoronoiLib.Structures
         {
             this.point = point;
         }
+
+        public void ReplaceCentroid(Point point)
+        {
+            this.point = point;
+        }
     }
 }
