@@ -30,24 +30,24 @@ namespace VoronoiLib
         }
         private static Point Compute2DCentroid(FortuneSite Site) //computes centroid to do Loyd Algorithm
         {
-            var vertices = FindVertices(Site);
-            if (!(vertices.Count() > 0)) return Site.point;
+            var vertices = FindVertices(Site).ToArray();
+            if (!(vertices.Length - 1 > 0)) return Site.point;
             double Area = 0;
             Point Centroid = new Point(0, 0);
 
             int i = 0;
-            for (; i < Site.Cell.Count() - 1; i++)
+            for (; i < vertices.Count() - 1; i++)
             {
-                Point current =  vertices.ElementAt(i);
-                Point next = vertices.ElementAt(i + 1);
+                Point current =  vertices[i];
+                Point next = vertices[i+1];
                 var partialarea = current.X * next.Y - next.X * current.Y;
                 Area += partialarea;
                 Centroid.X += (current.X + next.X) * partialarea;
                 Centroid.Y += (current.Y + next.Y) * partialarea;
             }
             
-            var last = vertices.ElementAt(i);
-            var first = vertices.ElementAt(0);
+            var last = vertices[i];
+            var first = vertices[0];
             var partialArea = last.X * first.Y - first.X * last.Y;
             Area += partialArea;
             Centroid.X += (first.X + last.X) * partialArea;
