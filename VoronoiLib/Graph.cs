@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using VoronoiLib;
 using VoronoiLib.Structures;
@@ -25,7 +26,7 @@ namespace VoronoiLib
 
         public void LoydRelax(int iterations)
         {
-            this.VoronoiEdges = LoydAlgorithm.Loyd(this.Sites, iterations, 0);
+            this.Sites = new SortedSet<FortuneSite>(LoydAlgorithm.Loyd(this.Sites.ToList(), iterations));
         }
 
         public void LoydRelax()

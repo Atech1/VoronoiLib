@@ -8,13 +8,15 @@ namespace VoronoiLib
     public static class LoydAlgorithm
     {
 
-        public static LinkedList<VEdge> Loyd(ICollection<FortuneSite> Sites, int iterations, int count)
+        public static ICollection<FortuneSite> Loyd(ICollection<FortuneSite> Sites, int iterations)
         {
-            if(count < iterations)
+            ICollection<FortuneSite> points = Sites;
+            for (int i = 0; i < iterations; i++)
             {
-                Loyd(LoydIteration(Sites), iterations, count++);
+                points = LoydIteration(points);
             }
-            return FortunesAlgorithm.Run(Sites);
+            return points;
+            
         }
         private static ICollection<FortuneSite> LoydIteration(ICollection<FortuneSite> Sites)
         {
@@ -29,6 +31,7 @@ namespace VoronoiLib
         private static Point Compute2DCentroid(FortuneSite Site) //computes centroid to do Loyd Algorithm
         {
             var vertices = FindVertices(Site);
+            if (!(vertices.Count() > 0)) return Site.point;
             double Area = 0;
             Point Centroid = new Point(0, 0);
 
